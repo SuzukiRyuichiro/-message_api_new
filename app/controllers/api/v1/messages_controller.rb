@@ -12,15 +12,9 @@ class Api::V1::MessagesController < ApplicationController
   def create
     message = Message.new(content: params[:content], author: params[:author], channel: Channel.find_by(name: params[:channel_id]))
     if message.save
-      render json: { status: 'SUCCESS', data: message }
+      render json: { status: 'SUCCESS', message: message }
     else
       render json: { status: 'ERROR', errors: message.errors, params: params }
     end
-  end
-
-  private
-
-  def message_params
-    params.require.permit(:content, :author)
   end
 end

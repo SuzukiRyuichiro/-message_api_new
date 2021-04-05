@@ -7,4 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Message.destroy_all
+puts 'destoyed all messages'
 Channel.destroy_all
+puts 'destoyed all channels'

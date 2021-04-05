@@ -14,5 +14,10 @@ This API is a very simple API for messaging among multiple users
 ### How to send a message
 <b>POST `https://scooter-messages.herokuapp.com/api/v1/channels/[CHANNEL_NAME]/messages`</b>
 <br>Attach a body that contains both a "content" and an "author". If either of them are blank, it would return an error message</br>
-<br>↓refer to the example here in Postman↓</br>
+<br>If the post request is routed to a new channel name, it would automatically create a channel with the name in the route. (i.e. If a channel called <em>games</em> never existed in the database, post request to `/api/v1/channels/games/message` will create a new channel called <em>games</em>)</br>
+<br>↓refer to the example here in Postman (Successful)↓</br>
 ![example from postman](./screenshots/postman_post.jpg)
+
+<br>↓refer to the example here in Postman (Unsuccessful)↓</br>
+![example from postman](./screenshots/post_error.jpg)
+

@@ -24,3 +24,5 @@ test:
 production:
   <<: *default
   database: message_api_production
+  username: message_api
+  password: <%= ENV['MESSAGE_API_DATABASE_PASSWORD'] %>

@@ -10,11 +10,29 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def create
-    message = Message.new(content: params[:content], author: params[:author], channel: Channel.find_by(name: params[:channel_id]))
-    if message.save
-      render json: { status: 'SUCCESS', message: message }
+    channel = Channel.find_by(name: params[:channel_id])
+    if channel
+      message = set_message(channel)
+      if message.save
+        render json: { status: 'SUCCESS', message: message }
+      else
+        render json: { status: 'ERROR', errors: message.errors }
+      end
     else
-      render json: { status: 'ERROR', errors: message.errors, params: params }
+      new_channel = Channel.create(name: params[:channel_id])
+      message = set_message(new_channel)
+      if message.save
+        render json: { status: 'SUCCESS', message: message }
+      else
+        render json: { status: 'ERROR', errors: message.errors }
+      end
     end
+  end
+
+  private
+
+  def set_message(channel)
+    # expects a instance of a Channel
+    Message.new(content: params[:content], author: params[:author], channel: channel)
   end
 end

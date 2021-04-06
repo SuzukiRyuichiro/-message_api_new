@@ -21,3 +21,8 @@ This API is a very simple API for messaging among multiple users
 <br>↓refer to the example here in Postman (Unsuccessful)↓</br>
 ![example from postman](./screenshots/post_error.jpg)
 
+### How to see open channels
+<b>GET `https://scooter-messages.herokuapp.com/api/v1/channels`</b>
+<br>You can see all available channel names in the database!</br>
+<br>↓example response↓</br>
+![successful response](./screenshots/channel_index.jpg)

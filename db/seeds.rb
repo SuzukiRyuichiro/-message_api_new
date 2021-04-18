@@ -10,3 +10,6 @@ Message.destroy_all
 puts 'destoyed all messages'
 Channel.destroy_all
 puts 'destoyed all channels'
+
+Channel.create(name: "general")
+Message.create(channel: Channel.find_by(name: 'general'), author: 'Scooter', content: 'This is the general channel')
